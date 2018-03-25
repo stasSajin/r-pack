@@ -22,5 +22,5 @@ be plotted.
 \code{fars_map_state} will plot the accidents for a provided state and year
 }
 \examples{
-fars_map_state(3, 2017)
+\dontrun{fars_map_state(3, 2014)}
 }

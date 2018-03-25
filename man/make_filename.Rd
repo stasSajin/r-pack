@@ -17,5 +17,5 @@ A string representing a filename in the following format
 Create a filename for a specific year
 }
 \examples{
-make_filename(1999)
+\dontrun{make_filename(1999)}
 }

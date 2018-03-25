@@ -19,5 +19,5 @@ the contents of the csv using \code{fars_read}. The function will return a warni
 and invalid year is provided.
 }
 \examples{
-fars_read_years(c(2016, 2017))
+\dontrun{fars_read_years(c(2016, 2017))}
 }

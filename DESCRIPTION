@@ -1,22 +1,21 @@
 Package: week2
-Type: Package
 Title: Contains the solution to week 2 Advanced R
 Version: 0.1.0
-Author: person("Stas", "Sajin", email = "sajin.stanislav@example.com",
+Authors@R: person("Stas", "Sajin", email = "sajin.stanislav@example.com",
                   role = c("aut", "cre"))
 Maintainer: Stas Sajin <sajin.stanislav@example.com>
 Description: The package aims to document the fars_functions
-Imports:
-    dplyr,
-    ggplot2,
-    grid
+Suggests: testthat,
+      knitr,
+      rmarkdown,
+VignetteBuilder: knitr
+Imports: readr,
+      dplyr,
+      tidyr,
+      maps,
+      graphics,
+      magrittr
 License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
-Suggests: knitr,
-    lubridate,
-    readr,
-    rmarkdown,
-    testthat
-VignetteBuilder: knitr

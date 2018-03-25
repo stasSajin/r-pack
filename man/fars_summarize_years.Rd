@@ -18,5 +18,5 @@ year and month. The function takes in a list of years for which statistics
 are computed.
 }
 \examples{
-fars_summarize_years(c(2016, 2017))
+\dontrun{fars_summarize_years(c(2016, 2017))}
 }
