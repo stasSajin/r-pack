@@ -9,11 +9,13 @@
 #'  will provide an error message.
 #' @export
 #'
-#' @examples
-#' \dontrun{fars_read('data/accident_2013.csv.bz2')}
-#'
 #' @importFrom readr read_csv
 #' @importFrom dplyr tbl_df
+#' @importFrom magrittr %>%
+#'
+#' @examples
+#' filename <- system.file("extdata", make_filename(2015), package = "rMock")
+#' data <- fars_read(filename)
 fars_read <- function(filename) {
         if(!file.exists(filename))
                 stop("file '", filename, "' does not exist")
@@ -24,7 +26,6 @@ fars_read <- function(filename) {
 }
 
 
-
 #' Create a filename for a specific year
 #'
 #' @param year a numeric value specifying the year
@@ -32,6 +33,8 @@ fars_read <- function(filename) {
 #' @return A string representing a filename in the following format
 #'  'accident_year.csv.bz2', where year will be replaced by the provided year
 #' @export
+#'
+#' @importFrom magrittr %>%
 #'
 #' @examples
 #' \dontrun{make_filename(1999)}
@@ -43,8 +46,8 @@ make_filename <- function(year) {
 #' Read multiple csv files for specific years
 #'
 #' \code{fars_read_years} accepts a vector of years. For each year, the functon invokes
-#' \code{make_filename} that creates a file name based on a provided year and then reads
-#' the contents of the csv using \code{fars_read}. The function will return a warning if
+#' \link{make_filename} that creates a file name based on a provided year and then reads
+#' the contents of the csv using \link{fars_read}. The function will return a warning if
 #' and invalid year is provided.
 #'
 #' @param years a vector of years, where each year must be a valid integer year
@@ -60,7 +63,7 @@ fars_read_years <- function(years) {
                 tryCatch({
                         dat <- fars_read(file)
                         dplyr::mutate(dat, year = year) %>%
-                                dplyr::select(MONTH, year)
+                                dplyr::select_(~MONTH, ~year)
                 }, error = function(e) {
                         warning("invalid year: ", year)
                         return(NULL)
@@ -89,9 +92,9 @@ fars_read_years <- function(years) {
 fars_summarize_years <- function(years) {
         dat_list <- fars_read_years(years)
         dplyr::bind_rows(dat_list) %>%
-                dplyr::group_by(year, MONTH) %>%
-                dplyr::summarize(n = n()) %>%
-                tidyr::spread(year, n)
+                dplyr::group_by_(~year, ~MONTH) %>%
+                dplyr::summarize_(n = ~n()) %>%
+                tidyr::spread("year", "n")
 }
 
 #' Map accidents for a state
@@ -122,7 +125,7 @@ fars_map_state <- function(state.num, year) {
 
         if(!(state.num %in% unique(data$STATE)))
                 stop("invalid STATE number: ", state.num)
-        data.sub <- dplyr::filter(data, STATE == state.num)
+        data.sub <- dplyr::filter_(data, ~ STATE == state.num)
         if(nrow(data.sub) == 0L) {
                 message("no accidents to plot")
                 return(invisible(NULL))
@@ -135,3 +138,4 @@ fars_map_state <- function(state.num, year) {
                 graphics::points(LONGITUD, LATITUDE, pch = 46)
         })
 }
+

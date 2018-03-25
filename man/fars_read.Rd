@@ -18,6 +18,6 @@ The function will use the provided file_path to load the data
 \code{fars_read} Reads a specific csv datafile using the provided filename.
 }
 \examples{
-\dontrun{fars_read('data/accident_2013.csv.bz2')}
-
+filename <- system.file("extdata", make_filename(2015), package = "rMock")
+data <- fars_read(filename)
 }

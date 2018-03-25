@@ -1,10 +1,10 @@
-Package: week2
-Title: Contains the solution to week 2 Advanced R
+Package: rMock
+Title: Mock package for Mastering Software Development in R
 Version: 0.1.0
 Authors@R: person("Stas", "Sajin", email = "sajin.stanislav@example.com",
                   role = c("aut", "cre"))
 Maintainer: Stas Sajin <sajin.stanislav@example.com>
-Description: The package aims to document the fars_functions
+Description: The package is a mock package aiming to document the functions used in Week 2 for mastering software development in R.
 Suggests: testthat,
       knitr,
       rmarkdown,
@@ -15,7 +15,7 @@ Imports: readr,
       maps,
       graphics,
       magrittr
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1

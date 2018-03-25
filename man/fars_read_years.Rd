@@ -14,8 +14,8 @@ A list of dataframes for each year
 }
 \description{
 \code{fars_read_years} accepts a vector of years. For each year, the functon invokes
-\code{make_filename} that creates a file name based on a provided year and then reads
-the contents of the csv using \code{fars_read}. The function will return a warning if
+\link{make_filename} that creates a file name based on a provided year and then reads
+the contents of the csv using \link{fars_read}. The function will return a warning if
 and invalid year is provided.
 }
 \examples{
